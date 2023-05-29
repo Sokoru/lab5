@@ -10,7 +10,7 @@ choice:
     scanf(" %c", &input);
     if (input == 'y')
     {
-        goto code;
+        goto method;
     }
     else if (input == 'n')
     {
@@ -22,8 +22,32 @@ choice:
         printf("Невірний вибір, введіть ще раз.\n");
         goto choice;
     }
+method:
+{
+    char input;
+    printf("a - на номер мінімального за модулем елемента масиву; b - на суму елементів масиву між першим та останнім додатними елементами. \n");
+    printf("Яким методом будемо вирішувати завдання? Щоб повернутися - напишіть  r. (a/b/r): ");
+    scanf(" %c", &input);
+    if (input == 'a')
+    {
+        goto code_1;
+    }
+    else if (input == 'b')
+    {
+        goto code_2;
+    }
+    else if (input == 'r')
+    {
+        goto choice;
+    }
+    else
+    {
+        printf("Невірний вибір, введіть ще раз.\n");
+        goto method;
+    }
+}
 
-code:
+code_1:
 {
     int n;
     printf("Задайте розмір масиву: ");
@@ -32,8 +56,6 @@ code:
     int a[n];
     const int colCount = n, Low = -100, High = 100;
     srand(time(0));
-    int a[colCount];
-
     for (int i = 0; i < colCount; i++)
     {
         a[i] = Low + rand() % (High - Low + 1);
@@ -55,7 +77,25 @@ code:
         }
     }
     printf("\nНомер мінімального за модулем елемента масиву: %d;\n", minIndex);
+    goto choice;
+}
 
+code_2: {
+    int n;
+    printf("Введіть кількість елементів масиву: ");
+    scanf("%d", &n);
+
+    int a[n];
+    const int colCount = n, Low = -100, High = 100;
+    srand(time(0));
+    for (int i = 0; i < colCount; i++)
+    {
+        a[i] = Low + rand() % (High - Low + 1);
+    }
+    for (int i = 0; i < colCount; i++)
+    {
+        printf("a[%d] = %d; ", i, a[i]);
+    }
     int firstPositiveIndex = -1;
     int lastPositiveIndex = -1;
     for (int i = 1; i < n; i++)
@@ -78,7 +118,6 @@ code:
         }
     }
     printf("Сума елементів масиву між першим та останнім додатними елементами: %d;\n", sum);
-
     goto choice;
 }
 }
