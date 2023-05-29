@@ -19,7 +19,7 @@ choice:
     }
     else
     {
-        printf("Невірний вибір, введіть ще раз.\n");
+        printf("Невірний вибір, задайте ще раз.\n");
         goto choice;
     }
 method:
@@ -42,7 +42,7 @@ method:
     }
     else
     {
-        printf("Невірний вибір, введіть ще раз.\n");
+        printf("Невірний вибір, задайте ще раз.\n");
         goto method;
     }
 }
@@ -76,13 +76,14 @@ code_1:
             minValue = absValue;
         }
     }
-    printf("\nНомер мінімального за модулем елемента масиву: %d;\n", minIndex);
+    printf("\nНомер мінімального за модулем елемента масиву: a[%d];\n", minIndex);
     goto choice;
 }
 
-code_2: {
+code_2:
+{
     int n;
-    printf("Введіть кількість елементів масиву: ");
+    printf("Задайте кількість елементів масиву: ");
     scanf("%d", &n);
 
     int a[n];
@@ -112,12 +113,20 @@ code_2: {
     int sum = 0;
     if (firstPositiveIndex != -1 && lastPositiveIndex != -1 && firstPositiveIndex != lastPositiveIndex)
     {
-        for (int i = firstPositiveIndex; i < lastPositiveIndex; i++)
+        if (firstPositiveIndex > 0 && lastPositiveIndex > 0)
         {
-            sum += a[i];
+            for (int i = firstPositiveIndex; i <= lastPositiveIndex; i++)
+            {
+                sum += a[i];
+            }
         }
+        else
+        {
+            printf("\nНе відповідає умові cуми елементів масиву між першим та останнім додатними елементами.\n");
+            goto choice;
+        }
+        printf("Сума елементів масиву між першим та останнім додатними елементами: %d;\n", sum);
+        goto choice;
     }
-    printf("Сума елементів масиву між першим та останнім додатними елементами: %d;\n", sum);
-    goto choice;
 }
 }
