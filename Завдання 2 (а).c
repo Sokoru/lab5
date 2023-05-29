@@ -48,16 +48,16 @@ method:
 
 code_1:
 {
-  int n;
-    printf("Введіть кількість елементів масиву: ");
-    scanf("%d", &n);                                
+    int n;
+    printf("Задайте кількість елементів масиву: ");
+    scanf("%d", &n);
 
     int a[n];
-    printf("Введіть елементи масиву:\n");
+    printf("Задайте елементи масиву:\n");
     for (int i = 0; i < n; i++)
     {
         printf("a[%d] = ", i);
-        scanf("%d", &a[i]);    
+        scanf("%d", &a[i]);
     }
     int minIndex = 0;
     int minValue = abs(a[0]);
@@ -70,22 +70,22 @@ code_1:
             minValue = absValue;
         }
     }
-    printf("Номер мінімального за модулем елемента масиву: %d;\n", minIndex);
+    printf("Номер мінімального за модулем елемента масиву: a[%d];\n", minIndex);
     goto choice;
 }
 
 code_2:
 {
-int n;
-    printf("Введіть кількість елементів масиву: ");
-    scanf("%d", &n);                                
+    int n;
+    printf("Задайте кількість елементів масиву: ");
+    scanf("%d", &n);
 
     int a[n];
-    printf("Введіть елементи масиву:\n");
+    printf("Задайте елементи масиву:\n");
     for (int i = 0; i < n; i++)
     {
         printf("a[%d] = ", i);
-        scanf("%d", &a[i]);    
+        scanf("%d", &a[i]);
     }
     int firstPositiveIndex = -1;
     int lastPositiveIndex = -1;
@@ -103,12 +103,20 @@ int n;
     int sum = 0;
     if (firstPositiveIndex != -1 && lastPositiveIndex != -1 && firstPositiveIndex != lastPositiveIndex)
     {
-        for (int i = firstPositiveIndex; i < lastPositiveIndex; i++)
+        if (firstPositiveIndex > 0 && lastPositiveIndex > 0)
         {
-            sum += a[i];
+            for (int i = firstPositiveIndex; i <= lastPositiveIndex; i++)
+            {
+                sum += a[i];
+            }
         }
+        else
+        {
+            printf("Не відповідає умові cуми елементів масиву між першим та останнім додатними елементами.\n");
+            goto choice;
+        }
+        printf("Сума елементів масиву між першим та останнім додатними елементами: %d;\n", sum);
+        goto choice;
     }
-    printf("Сума елементів масиву між першим та останнім додатними елементами: %d;\n", sum);
-    goto choice;
 }
 }
