@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <time.h>
+
 int main()
 {
     char input;
@@ -10,7 +9,7 @@ choice:
     scanf(" %c", &input);
     if (input == 'y')
     {
-        goto code;
+        goto method;
     }
     else if (input == 'n')
     {
@@ -22,10 +21,34 @@ choice:
         printf("Невірний вибір, введіть ще раз.\n");
         goto choice;
     }
-
-code:
+method:
 {
-    int n;
+    char input;
+    printf("a - на номер мінімального за модулем елемента масиву; b - на суму елементів масиву між першим та останнім додатними елементами. \n");
+    printf("Яким методом будемо вирішувати завдання? Щоб повернутися - напишіть  r. (a/b/r): ");
+    scanf(" %c", &input);
+    if (input == 'a')
+    {
+        goto code_1;
+    }
+    else if (input == 'b')
+    {
+        goto code_2;
+    }
+    else if (input == 'r')
+    {
+        goto choice;
+    }
+    else
+    {
+        printf("Невірний вибір, введіть ще раз.\n");
+        goto method;
+    }
+}
+
+code_1:
+{
+  int n;
     printf("Введіть кількість елементів масиву: ");
     scanf("%d", &n);                                
 
@@ -48,7 +71,22 @@ code:
         }
     }
     printf("Номер мінімального за модулем елемента масиву: %d;\n", minIndex);
+    goto choice;
+}
 
+code_2:
+{
+int n;
+    printf("Введіть кількість елементів масиву: ");
+    scanf("%d", &n);                                
+
+    int a[n];
+    printf("Введіть елементи масиву:\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("a[%d] = ", i);
+        scanf("%d", &a[i]);    
+    }
     int firstPositiveIndex = -1;
     int lastPositiveIndex = -1;
     for (int i = 1; i < n; i++)
